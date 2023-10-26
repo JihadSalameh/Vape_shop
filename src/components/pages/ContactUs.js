@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './ContactUs.css'; // Import the CSS file
+import './ContactUs.css';
 
 const ContactUs = () => {
   const [subject, setSubject] = useState('');
@@ -7,10 +7,30 @@ const ContactUs = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
 
   const handleSendEmail = () => {
-    // You can implement the logic to send the email here
-    console.log('Subject:', subject);
-    console.log('Message:', message);
-    console.log('Phone Number:', phoneNumber);
+    const emailData = {
+      subject: subject,
+      text: `Complaint: ${message}\nPhone Number: ${phoneNumber}`,
+    };
+
+    // Send the email data to the Spring Boot API
+    fetch('http://localhost:8080/api/email/send', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(emailData),
+    })
+    .then((response) => {
+      if (response.ok) {
+        alert('Email sent successfully');
+      } else {
+        alert('Failed to send email');
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+      alert('Error occurred while sending email');
+    });
   };
 
   return (
