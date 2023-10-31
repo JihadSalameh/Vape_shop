@@ -23,6 +23,9 @@ const ContactUs = () => {
     .then((response) => {
       if (response.ok) {
         alert('Email sent successfully');
+        setSubject('');
+        setMessage('');
+        setPhoneNumber('');
       } else {
         alert('Failed to send email');
       }

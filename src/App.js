@@ -1,6 +1,7 @@
 import './App.css';
 import { BrowserRouter as Router,  Route, Routes } from "react-router-dom";
 import NavBar from "./components/NavBar";
+import Popup from './components/Popup';
 import Home from "./components/pages/Home";
 import Vapes from "./components/pages/Vapes";
 import Pods from "./components/pages/Pods";
@@ -10,6 +11,7 @@ import ContactUs from "./components/pages/ContactUs";
 function App() {
   return (
     <div>
+      <Popup />
       <Router>
         <NavBar />
 
